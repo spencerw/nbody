@@ -1,4 +1,3 @@
-  # Test parameter file
-    a 4
-b 6
-c 3
+# Test parameter file
+nParticles 3
+nSteps 40

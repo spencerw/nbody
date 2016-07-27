@@ -1,11 +1,11 @@
 CC = g++
 CFLAGS = -Wall -g
 
-INCLUDES = 
+INCLUDES = -I ~/boost
 LFLAGS = 
 LIBS = 
 
-SRCS = main.cpp input.cpp
+SRCS = Integrator.cpp MainLoop.cpp Output.cpp ParamManager.cpp SimManager.cpp Particle.cpp
 OBJS = $(SRCS:.c=.o)
 MAIN = nbody
 
