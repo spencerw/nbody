@@ -1,7 +1,6 @@
 #include "ParamManager.h"
 
 ParamManager::ParamManager() {
-  n_particles = 10;
   n_steps = 100;
 }
 
@@ -26,9 +25,7 @@ void ParamManager::process_param_file(std::string filename) {
     par_name = line.substr(0, line.find_first_of(" "));
     val = line.substr(line.find_first_of(" "));
 
-    if (par_name == "nParticles") {
-      n_particles = atoi(val.c_str());
-    } else if (par_name == "nSteps") {
+    if (par_name == "nSteps") {
       n_steps = atoi(val.c_str());
     } else {
       std::cerr << "Invalid parameter: " << par_name;
@@ -38,6 +35,5 @@ void ParamManager::process_param_file(std::string filename) {
 }
 
 void ParamManager::print_state() {
-  std::cout << "nParticles = " << n_particles << std::endl;
   std::cout << "nSteps = " << n_steps << std::endl;
 }

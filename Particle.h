@@ -7,15 +7,14 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
-#include <boost/numeric/ublas/vector.hpp>
-#include <boost/numeric/ublas/io.hpp>
-
-using namespace boost::numeric::ublas;
+#include <stdint.h>
+#include "SFC.h"
+#include <vector>
 
 class Particle {
   public:
-    vector<double> pos;
-    vector<double> vel;
+    Vector3D<double> pos;
+    Vector3D<double> vel;
     double mass;
 
     Particle();

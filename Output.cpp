@@ -34,14 +34,14 @@ void Output::output_step_file() {
   Particle* p;
   for (i = 0; i < sim_manager->get_n_particles(); i++) {
     p = sim_manager->get_particle(i);
-    outfile << std::left << std::setw(label_width) << std::setfill(separator) << i;
-    outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->mass;
-    outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->pos(0);
-    outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->pos(1);
-    outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->pos(2);
-    outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->vel(0);
-    outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->vel(1);
-    outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->vel(2);
+    //outfile << std::left << std::setw(label_width) << std::setfill(separator) << i;
+    //outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->mass;
+    //outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->pos(0);
+    //outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->pos(1);
+    //outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->pos(2);
+    //outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->vel(0);
+    //outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->vel(1);
+    //outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->vel(2);
     outfile << std::endl;
   }
   

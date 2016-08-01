@@ -1,3 +1,2 @@
 # Test parameter file
-nParticles 3
-nSteps 40
+nSteps 1

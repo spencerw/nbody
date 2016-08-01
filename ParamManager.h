@@ -9,7 +9,6 @@
 
 class ParamManager {
   public:
-    int n_particles;
     int n_steps;
 
     ParamManager();

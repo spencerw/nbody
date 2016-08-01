@@ -1,11 +1,13 @@
 CC = g++
 CFLAGS = -Wall -g
 
-INCLUDES = -I ~/boost
-LFLAGS = 
-LIBS = 
+STRUCTURES_PATH = ../utility/structures
 
-SRCS = Integrator.cpp MainLoop.cpp Output.cpp ParamManager.cpp SimManager.cpp Particle.cpp
+INCLUDES = -I ../utility/structures
+LFLAGS = 
+LIBS = $(STRUCTURES_PATH)/libTipsy.a
+
+SRCS = Integrator.cpp MainLoop.cpp Output.cpp ParamManager.cpp SimManager.cpp Particle.cpp TipsyInput.cpp
 OBJS = $(SRCS:.c=.o)
 MAIN = nbody
 
@@ -13,11 +15,14 @@ MAIN = nbody
 
 all: $(MAIN)
 
-$(MAIN): $(OBJS)
+$(MAIN): $(OBJS) $(STRUCTURES_PATH)/libTipsy.a
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
 
 .c.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
+
+$(STRUCTURES_PATH)/libTipsy.a:
+	cd $(STRUCTURES_PATH); $(MAKE) libTipsy.a
 
 clean:
 	$(RM) *.o *~ $(MAIN)

@@ -11,7 +11,7 @@ void Integrator::update_particles(double dt) {
   Particle *pi, *pj;
 
   // Force calculations
-  vector<double> rij(3), dv_over_m(3);
+  Vector3D<double> rij, dv_over_m;
   double r;
   for (i = 0; i < n_particles; i++) {
     for (j = i+1; j < n_particles; j++) {
@@ -19,7 +19,7 @@ void Integrator::update_particles(double dt) {
       pj = &particles[j];
 
       rij = pi->pos - pj->pos;
-      r = norm_2(rij);
+      r = rij.length();
       dv_over_m = rij*dt/(r*r*r + epsilon);
       pi->vel -= dv_over_m*pj->mass;
       pj->vel += dv_over_m*pi->mass;
