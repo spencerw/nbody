@@ -1,8 +1,8 @@
 #include "SimManager.h"
 
-SimManager::SimManager(int *_n_particles) {
+SimManager::SimManager(int _n_particles) {
   n_particles = _n_particles;
-  p = new Particle[*n_particles];
+  p = new Particle[n_particles];
   integrator = new Integrator(p, n_particles);
   step_num = 0.;
   time = 0.;
@@ -14,7 +14,7 @@ SimManager::~SimManager() {
 }
 
 Particle* SimManager::get_particle(int idx) {
-  if (idx < 0 || idx >= *n_particles) {
+  if (idx < 0 || idx >= n_particles) {
     std::cerr << "Particle index " << idx << " invalid" << std::endl;
     std::exit(-1);
   }

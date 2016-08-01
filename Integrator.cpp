@@ -1,6 +1,6 @@
 #include "Integrator.h"
 
-Integrator::Integrator(Particle* _particles, int* _n_particles) {
+Integrator::Integrator(Particle* _particles, int _n_particles) {
   particles = _particles;
   n_particles = _n_particles;
   epsilon = 0.01;
@@ -13,8 +13,8 @@ void Integrator::update_particles(double dt) {
   // Force calculations
   vector<double> rij(3), dv_over_m(3);
   double r;
-  for (i = 0; i < *n_particles; i++) {
-    for (j = i+1; j < *n_particles; j++) {
+  for (i = 0; i < n_particles; i++) {
+    for (j = i+1; j < n_particles; j++) {
       pi = &particles[i];
       pj = &particles[j];
 
@@ -27,7 +27,7 @@ void Integrator::update_particles(double dt) {
   } 
 
   // Update positions
-  for (i = 0; i < *n_particles; i++) {
+  for (i = 0; i < n_particles; i++) {
     pi = &particles[i];
     pi->pos += pi->vel*dt;
   }

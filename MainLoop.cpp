@@ -9,7 +9,7 @@ int main() {
   param_manager->process_param_file("run.param");
   param_manager->print_state();
 
-  SimManager *sim_manager = new SimManager(&param_manager->n_particles);
+  SimManager *sim_manager = new SimManager(param_manager->n_particles);
   Output *output = new Output("run", sim_manager);
 
   // Initalize particle positions

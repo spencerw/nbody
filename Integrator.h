@@ -6,10 +6,10 @@
 class Integrator{
   public:
     Particle* particles;
-    int* n_particles;
+    int n_particles;
     double epsilon;
 
-    Integrator(Particle* _particles, int* _n_particles);
+    Integrator(Particle* _particles, int _n_particles);
     ~Integrator() {}
 
     void update_particles(double dt);

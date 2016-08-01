@@ -15,7 +15,7 @@ class ParamManager {
     ParamManager();
     ~ParamManager() {}
 
-    void process_param_file(const char* filename);
+    void process_param_file(std::string filename);
 
     void print_state();
 };

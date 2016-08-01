@@ -5,8 +5,8 @@ ParamManager::ParamManager() {
   n_steps = 100;
 }
 
-void ParamManager::process_param_file(const char* filename) {
-  std::ifstream infile(filename);
+void ParamManager::process_param_file(std::string filename) {
+  std::ifstream infile(filename.c_str());
   
   if (!infile) {
     std::cerr << "Can't open file " << filename << std::endl;
