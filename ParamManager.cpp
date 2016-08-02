@@ -2,6 +2,8 @@
 
 ParamManager::ParamManager() {
   n_steps = 100;
+  theta = 0.5;
+  epsilon = 0.001;
 }
 
 void ParamManager::process_param_file(std::string filename) {
@@ -27,6 +29,10 @@ void ParamManager::process_param_file(std::string filename) {
 
     if (par_name == "nSteps") {
       n_steps = atoi(val.c_str());
+    } else if (par_name == "theta") {
+      theta = atof(val.c_str());
+    } else if (par_name == "epsilon") {
+      epsilon = atof(val.c_str());
     } else {
       std::cerr << "Invalid parameter: " << par_name;
       std::exit(-1);
@@ -36,4 +42,6 @@ void ParamManager::process_param_file(std::string filename) {
 
 void ParamManager::print_state() {
   std::cout << "nSteps = " << n_steps << std::endl;
+  std::cout << "theta = " << theta << std::endl;
+  std::cout << "epsilon = " << epsilon << std::endl;
 }

@@ -1,2 +1,4 @@
 # Test parameter file
-nSteps 1
+nSteps 10
+theta 0.5
+epsilon = 0.001

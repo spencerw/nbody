@@ -1,34 +1,24 @@
 #include "Integrator.h"
 
-Integrator::Integrator(Particle* _particles, int _n_particles) {
-  particles = _particles;
+Integrator::Integrator(Particle* _p, int _n_particles) {
+  p = _p;
   n_particles = _n_particles;
-  epsilon = 0.01;
 }
 
-void Integrator::update_particles(double dt) {
-  int i, j;
-  Particle *pi, *pj;
+void Integrator::update_particles(Tree* tree, double dt) {
+  std::cout << "Integrating step..." << std::endl;
+  int i;
 
-  // Force calculations
-  Vector3D<double> rij, dv_over_m;
-  double r;
+  // Update velocities
   for (i = 0; i < n_particles; i++) {
-    for (j = i+1; j < n_particles; j++) {
-      pi = &particles[i];
-      pj = &particles[j];
-
-      rij = pi->pos - pj->pos;
-      r = rij.length();
-      dv_over_m = rij*dt/(r*r*r + epsilon);
-      pi->vel -= dv_over_m*pj->mass;
-      pj->vel += dv_over_m*pi->mass;
-    }
+    std::cout << "Update velocity of particle " << i << std::endl;
+    Vector3D<double> force = tree->force_on(&p[i]);
+    p[i].vel += force/p[i].mass*dt;
   } 
 
   // Update positions
   for (i = 0; i < n_particles; i++) {
-    pi = &particles[i];
-    pi->pos += pi->vel*dt;
+    std::cout << "Update position of particle " << i << std::endl;
+    p[i].pos += p[i].vel*dt;
   }
 }

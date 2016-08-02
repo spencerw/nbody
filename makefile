@@ -7,7 +7,7 @@ INCLUDES = -I ../utility/structures
 LFLAGS = 
 LIBS = $(STRUCTURES_PATH)/libTipsy.a
 
-SRCS = Integrator.cpp MainLoop.cpp Output.cpp ParamManager.cpp SimManager.cpp Particle.cpp TipsyInput.cpp
+SRCS = Integrator.cpp MainLoop.cpp Output.cpp ParamManager.cpp SimManager.cpp Particle.cpp TipsyInput.cpp Tree.cpp Physics.cpp
 OBJS = $(SRCS:.c=.o)
 MAIN = nbody
 

@@ -11,23 +11,14 @@ SimManager::~SimManager() {
   delete integrator;
 }
 
-void SimManager::evolve(double dt) {
+void SimManager::evolve(Tree* tree, double dt) {
   if (n_particles == -1) {
     std::cerr << "Particles not initalized" << std::endl;
   }
 
-  integrator->update_particles(dt);
+  integrator->update_particles(tree, dt);
   time += dt;
   step_num++;
-}
-
-Particle* SimManager::get_particle(int idx) {
-  if (idx < 0 || idx >= n_particles) {
-    std::cerr << "Particle index invalid: " << idx << std::endl;
-    std::exit(-1);
-  }
-
-  return &p[idx];
 }
 
 void SimManager::allocate_particles(int _n_particles) {

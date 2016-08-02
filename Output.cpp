@@ -33,7 +33,7 @@ void Output::output_step_file() {
   int i;
   Particle* p;
   for (i = 0; i < sim_manager->get_n_particles(); i++) {
-    p = sim_manager->get_particle(i);
+    p = &sim_manager->p[i];
     //outfile << std::left << std::setw(label_width) << std::setfill(separator) << i;
     //outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->mass;
     //outfile << std::left << std::setw(label_width) << std::setfill(separator) << p->pos(0);

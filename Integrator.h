@@ -2,17 +2,17 @@
 #define INTEGRATOR_H
 
 #include "Particle.h"
+#include "Tree.h"
 
 class Integrator{
   public:
-    Particle* particles;
+    Particle* p;
     int n_particles;
-    double epsilon;
 
-    Integrator(Particle* _particles, int _n_particles);
+    Integrator(Particle* _p, int _n_particles);
     ~Integrator() {}
 
-    void update_particles(double dt);
+    void update_particles(Tree* tree, double dt);
 };
 
 #endif

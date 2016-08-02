@@ -3,6 +3,7 @@
 
 #include "Integrator.h"
 #include "Particle.h"
+#include "Tree.h"
 
 class SimManager {
   private:
@@ -15,11 +16,10 @@ class SimManager {
     Particle* p;
     SimManager();
     ~SimManager();
-    void evolve(double dt);
+    void evolve(Tree* tree, double dt);
     int get_n_particles() { return n_particles; }
     int get_step_num() { return step_num; }
     double get_time() { return time; }
-    Particle* get_particle(int idx);
     void allocate_particles(int _n_particles);
 };
 
