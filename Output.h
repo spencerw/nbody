@@ -2,6 +2,7 @@
 #define OUTPUT_H
 
 #include "SimManager.h"
+#include "TipsyFile.h"
 
 class Output {
   public:
@@ -14,6 +15,7 @@ class Output {
 
     void output_step_console();
     void output_step_file();
+    void output_step_tipsy();
 };
 
 #endif

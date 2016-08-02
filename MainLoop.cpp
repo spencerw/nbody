@@ -27,7 +27,7 @@ int main() {
     tree = new Tree(sim_manager->p, sim_manager->get_n_particles(), param_manager->theta, physics);
     sim_manager->evolve(tree, dt);
     output->output_step_console();
-    output->output_step_file();
+    output->output_step_tipsy();
     delete tree;
     std::cout << "Step " << i << " finished" << std::endl;
   }
