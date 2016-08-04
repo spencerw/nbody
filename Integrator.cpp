@@ -5,20 +5,25 @@ Integrator::Integrator(Particle* _p, int _n_particles) {
   n_particles = _n_particles;
 }
 
-void Integrator::update_particles(Tree* tree, double dt) {
-  std::cout << "Integrating step..." << std::endl;
+void Integrator::update_particles(int step_num, Tree* tree, double dt) {
+  std::cout << "Integrating step " << step_num << std::endl;
   int i;
-
-  // Update velocities
-  for (i = 0; i < n_particles; i++) {
-    std::cout << "Update velocity of particle " << i << std::endl;
-    Vector3D<double> force = tree->force_on(&p[i]);
-    p[i].vel += force/p[i].mass*dt;
-  } 
-
-  // Update positions
-  for (i = 0; i < n_particles; i++) {
-    std::cout << "Update position of particle " << i << std::endl;
-    p[i].pos += p[i].vel*dt;
+ 
+  if (step_num == 0) {
+  #pragma omp parallel for
+    for (i = 0; i < n_particles; i++) {
+      Vector3D<double> a = tree->force_on(&p[i])/p[i].mass;
+      p[i].vel += a*dt*0.5;
+      p[i].pos += p[i].vel*dt;
+    }
   }
+  else {
+    #pragma omp parallel for
+    for (i = 0; i < n_particles; i++) {
+      Vector3D<double> a = tree->force_on(&p[i])/p[i].mass;
+      p[i].pos += p[i].vel*dt;
+      p[i].vel += a*dt;
+    }
+  }
+
 }

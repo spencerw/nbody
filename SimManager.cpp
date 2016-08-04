@@ -16,7 +16,7 @@ void SimManager::evolve(Tree* tree, double dt) {
     std::cerr << "Particles not initalized" << std::endl;
   }
 
-  integrator->update_particles(tree, dt);
+  integrator->update_particles(step_num, tree, dt);
   time += dt;
   step_num++;
 }

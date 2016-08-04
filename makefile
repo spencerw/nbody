@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -g
+CFLAGS = -Wall -g -fopenmp
 
 STRUCTURES_PATH = ../utility/structures
 

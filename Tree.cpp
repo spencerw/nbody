@@ -95,20 +95,17 @@ void split_external_node(Node* n) {
 
 void add_particle(Node* n, Particle* p) {
   if (n->c1 == NULL && n->p == NULL) {
-    //std::cout << "Adding particle to empty node" << std::endl;
     n->p = p;
     n->child_mass = p->mass;
     n->com = p->pos;
   }
   else if (n->c1 != NULL) {
-    //std::cout << "Traverse internal node" << std::endl;
     n->child_mass += p->mass;
     n->com += p->pos*p->mass/n->child_mass;
     Node* insert_node = which_octant(n, p);
     add_particle(insert_node, p);
   }
   else {
-    //std::cout << "Reached external node...splitting" << std::endl;
     split_external_node(n);
     Particle* pt = n->p;
     n->p = NULL;
@@ -146,7 +143,6 @@ Tree::Tree(Particle* p, int _n_particles, double _theta, Physics* _physics) {
   root = new Node(-box_length, box_length, -box_length, box_length, -box_length, box_length);
   int i;
   for (i = 0; i < n_particles; i++) {
-    std::cout << "Add particle " << i << " to tree" << std::endl;
     add_particle(root, &p[i]);
   }
   std::cout << "Tree finished" << std::endl;
@@ -164,7 +160,6 @@ void Tree::force_on_helper(Particle* p, Node* n, Vector3D<double> net_force) {
     net_force += physics->grav_force(p->pos, p->mass, n->com, n->child_mass);
   }
   else if (s/d < theta) {
-    std::cout << "Approximating node" << std::endl;
     net_force += physics->grav_force(p->pos, p->mass, n->com, n->child_mass);
   }
   else {
