@@ -6,6 +6,6 @@ Physics::Physics(double _epsilon) {
 
 Vector3D<double> Physics::grav_force(Vector3D<double> pos1, double mass1, Vector3D<double> pos2, double mass2) {
   Vector3D<double> rij = pos2 - pos1;
-  double r = rij.length();
+  double r = fabs(rij.length());
   return mass1*mass2*rij/(r*r*r + epsilon);
 }

@@ -1,0 +1,5 @@
+# Test parameter file
+nSteps 700
+dt 0.01
+theta 0.1
+epsilon 0.0

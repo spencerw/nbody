@@ -10,6 +10,7 @@
 class ParamManager {
   public:
     int n_steps;
+    double dt;
     double theta;
     double epsilon;
 

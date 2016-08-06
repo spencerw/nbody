@@ -94,17 +94,20 @@ void split_external_node(Node* n) {
 }
 
 void add_particle(Node* n, Particle* p) {
+  // Occupy empty node
   if (n->c1 == NULL && n->p == NULL) {
     n->p = p;
     n->child_mass = p->mass;
     n->com = p->pos;
   }
+  // Traverse internal node
   else if (n->c1 != NULL) {
     n->child_mass += p->mass;
     n->com += p->pos*p->mass/n->child_mass;
     Node* insert_node = which_octant(n, p);
     add_particle(insert_node, p);
   }
+  // Split external node
   else {
     split_external_node(n);
     Particle* pt = n->p;
@@ -126,9 +129,9 @@ double max_boxsize(Particle* p, int n_particles) {
   int i;
   double max_boxsize = 0.;
   for (i = 0; i < n_particles; i++) {
-    if (p[i].pos[0] > max_boxsize) max_boxsize = p[i].pos[0];
-    if (p[i].pos[1] > max_boxsize) max_boxsize = p[i].pos[1];
-    if (p[i].pos[2] > max_boxsize) max_boxsize = p[i].pos[2];
+    if (fabs(p[i].pos[0]) > max_boxsize) max_boxsize = fabs(p[i].pos[0]);
+    if (fabs(p[i].pos[1]) > max_boxsize) max_boxsize = fabs(p[i].pos[1]);
+    if (fabs(p[i].pos[2]) > max_boxsize) max_boxsize = fabs(p[i].pos[2]);
   }
   return max_boxsize;
 }
@@ -152,15 +155,15 @@ Tree::~Tree() {
   delete root;
 }
 
-void Tree::force_on_helper(Particle* p, Node* n, Vector3D<double> net_force) {
-  if (n == NULL || p == NULL) return;
+void Tree::force_on_helper(Particle* p, Node* n, Vector3D<double>* net_force) {
+  if (n == NULL || n->child_mass == -1.0) return;
   double s = n->xmax - n->xmin;
   double d = (p->pos - n->com).length();
   if (n->c1 == NULL && n->p != p) {
-    net_force += physics->grav_force(p->pos, p->mass, n->com, n->child_mass);
+    *net_force += physics->grav_force(p->pos, p->mass, n->com, n->child_mass);
   }
   else if (s/d < theta) {
-    net_force += physics->grav_force(p->pos, p->mass, n->com, n->child_mass);
+    *net_force += physics->grav_force(p->pos, p->mass, n->com, n->child_mass);
   }
   else {
     force_on_helper(p, n->c1, net_force);
@@ -176,6 +179,6 @@ void Tree::force_on_helper(Particle* p, Node* n, Vector3D<double> net_force) {
 
 Vector3D<double> Tree::force_on(Particle* p) {
   Vector3D<double> force(0.0);  
-  force_on_helper(p, root, force);
+  force_on_helper(p, root, &force);
   return force;
 }

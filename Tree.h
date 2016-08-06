@@ -29,7 +29,7 @@ class Tree {
     ~Tree();
 
   private:
-    void force_on_helper(Particle* p, Node* n, Vector3D<double> net_force);
+    void force_on_helper(Particle* p, Node* n, Vector3D<double>* net_force);
 };
 
 #endif

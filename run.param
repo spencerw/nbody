@@ -1,4 +1,5 @@
 # Test parameter file
 nSteps 10
+dt 0.1
 theta 0.5
 epsilon 0.001

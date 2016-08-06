@@ -7,7 +7,7 @@ Output::Output(std::string _out_filename, SimManager* _sim_manager) {
 }
 
 void Output::output_step_console() {
-  std::cout << "Step: " << sim_manager->get_step_num() << " Time: " << sim_manager->get_time() << std::endl;
+  //std::cout << "Step: " << sim_manager->get_step_num() << " Time: " << sim_manager->get_time() << std::endl;
 }
 
 void Output::output_step_file() {
@@ -78,7 +78,7 @@ void Output::output_step_tipsy() {
 
   std::stringstream filename;
   filename << out_filename << num_output_files << ".out";
-  std::cout << "Write to TIPSY file: " << filename.str() << std::endl;
+  //std::cout << "Write to TIPSY file: " << filename.str() << std::endl;
   Tipsy::TipsyWriter w(filename.str(), tipsy_header, false, bDoublePos, bDoubleVel);
   w.writeHeader();
   w.seekParticleNum(0);

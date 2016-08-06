@@ -31,6 +31,8 @@ void ParamManager::process_param_file(std::string filename) {
       n_steps = atoi(val.c_str());
     } else if (par_name == "theta") {
       theta = atof(val.c_str());
+    } else if (par_name == "dt") {
+      dt = atof(val.c_str());
     } else if (par_name == "epsilon") {
       epsilon = atof(val.c_str());
     } else {
@@ -42,6 +44,7 @@ void ParamManager::process_param_file(std::string filename) {
 
 void ParamManager::print_state() {
   std::cout << "nSteps = " << n_steps << std::endl;
+  std::cout << "dt = " << dt << std::endl;
   std::cout << "theta = " << theta << std::endl;
   std::cout << "epsilon = " << epsilon << std::endl;
 }
